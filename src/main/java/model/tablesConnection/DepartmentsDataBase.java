@@ -2,7 +2,6 @@ package model.tablesConnection;
 
 import model.DataBaseConnector;
 import model.tables.Departments;
-import model.tables.Jobs;
 import servlets.CustomServletContext;
 import java.sql.ResultSet;
 import java.sql.SQLException;
