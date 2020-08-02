@@ -1,18 +1,13 @@
 package servlets.auth;
 
 import model.DataBaseConnector;
-
-import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
-import java.util.Map;
 
 public class UserDAO {
      static Statement statement = DataBaseConnector.getStatement();
      public static boolean selectUser(String user, String password){
-          if (user.equals(null) && password.equals(null))
+          if (user.equals("") && password.equals(""))
                return false;
           String selectUser = "SELECT * FROM users WHERE user = " + "'" + user + "';";
           try {
@@ -30,7 +25,7 @@ public class UserDAO {
      }
 
      public static boolean signIn(String user, String password){
-          if (user.equals(null) && password.equals(null))
+          if (user.equals("") && password.equals(""))
                return false;
           try {
                String insert = "INSERT INTO users (user, password) VALUES ('" +
