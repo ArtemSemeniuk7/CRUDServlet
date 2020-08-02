@@ -39,9 +39,12 @@ public class JobsDataBase {
         try {
             HashSet<Jobs> jobsValue = new HashSet<>(table.values());
             HashMap<Integer, Jobs> insertmap = selectJobs();
+            
             HashSet<Jobs> insertjobs = new HashSet<>(insertmap.values());
             jobsValue.removeAll(insertjobs);
+            
             Iterator<Jobs> itr = jobsValue.iterator();
+            
             while (itr.hasNext()) {
                 Jobs JOBS = itr.next();
                 System.out.println(JOBS.getJOBS_ID());
@@ -49,6 +52,7 @@ public class JobsDataBase {
                         " (JOBS_ID, JOBS_TITLE, MIN_SALARY, MAX_SALARY) " +
                         " VALUES" + " ( " + JOBS.getJOBS_ID() + ", " + "'" + JOBS.getJOBS_TITLE() + "'" +
                         ", " + JOBS.getMIN_SALARY() + ", " + JOBS.getMAX_SALARY() + ");";
+                
                 statement.executeUpdate(insertsql);
             }
         } catch (SQLException e) {
@@ -60,11 +64,13 @@ public class JobsDataBase {
         try {
             ArrayList<Jobs> list = new ArrayList<>(table.values());
             Jobs JOBS = list.get(0);
+            
             String updatesql = "UPDATE JOBS SET" +
                     " JOBS_ID = " + JOBS.getJOBS_ID() + ", JOBS_TITLE = '" + JOBS.getJOBS_TITLE() +
                     "', MIN_SALARY = " + JOBS.getMIN_SALARY() + ", MAX_SALARY = " +  JOBS.getMAX_SALARY() +
                     " WHERE JOBS_ID = " + JOBS.getJOBS_ID() + "; ";
             System.out.println(updatesql);
+            
             statement.executeUpdate(updatesql);
 
         } catch (SQLException e) {
@@ -76,11 +82,15 @@ public class JobsDataBase {
         try {
             ArrayList<Jobs> list = new ArrayList<>(table.values());
             Jobs JOBS = list.get(0);
+            
             String deletesql = "DELETE FROM JOBS WHERE JOBS_ID = "
                     +  JOBS.getJOBS_ID() + " ;";
             System.out.println(deletesql);
+            
             statement.executeUpdate(deletesql);
+            
             CustomServletContext.servletContext.setAttribute("JOBS", selectJobs());
+            
         } catch (SQLException e) {
             System.out.println("Problems with deleteJobs " + e);
         }
