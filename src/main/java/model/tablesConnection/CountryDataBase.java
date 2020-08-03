@@ -20,9 +20,11 @@ public class CountryDataBase {
     public static HashMap<Integer, Countries> selectCountries() {
         ResultSet resultSet = null;
         HashMap<Integer, Countries> map = null;
+        
         try {
             resultSet = statement.executeQuery("SELECT * FROM " + "COUNTRIES");
             map = new HashMap<>();
+            
             while (resultSet.next()) {
                 map.put(resultSet.getInt("COUNTRY_ID"), new Countries(resultSet.getInt("COUNTRY_ID"),
                         resultSet.getString("COUNTRY_NAME"),
@@ -38,11 +40,16 @@ public class CountryDataBase {
         try {
             HashSet<Countries> countriesValue = new HashSet<>(table.values());
             HashMap<Integer, Countries> insertCountriesMap = selectCountries();
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 443d47e2f85f90740b29483639f3dd81c1de79e3
             HashSet<Countries> insertCountriesSet = new HashSet<>(insertCountriesMap.values());
             countriesValue.removeAll(insertCountriesSet);
 
             Iterator<Countries> itr = countriesValue.iterator();
+            
             while (itr.hasNext()) {
                 Countries COUNTRIES = itr.next();
                 System.out.println(COUNTRIES.getCOUNTRY_ID());
@@ -55,6 +62,12 @@ public class CountryDataBase {
                         " VALUES" + " ( " + COUNTRIES.getCOUNTRY_ID() + ", " + "'"
                         + COUNTRIES.getCOUNTRY_NAME() + "'" +
                         ", " + COUNTRIES.getREGION_ID() + ");";
+<<<<<<< HEAD
+=======
+                String sql = "SET FOREIGN_KEY_CHECKS=0;";
+                
+                statement.execute(sql);
+>>>>>>> 443d47e2f85f90740b29483639f3dd81c1de79e3
                 statement.executeUpdate(insertsql);
             }
         } catch (SQLException e) {
@@ -64,6 +77,12 @@ public class CountryDataBase {
 
     public static void updateCountries(Countries COUNTRIES){
         try {
+<<<<<<< HEAD
+=======
+            ArrayList<Countries> list = new ArrayList<>(table.values());
+            Countries COUNTRIES = list.get(0);
+            
+>>>>>>> 443d47e2f85f90740b29483639f3dd81c1de79e3
             String updatesql = "UPDATE COUNTRIES SET" +
                     " COUNTRY_ID = " + COUNTRIES.getCOUNTRY_ID() +
                     ", COUNTRY_NAME = '" + COUNTRIES.getCOUNTRY_NAME() +
@@ -79,16 +98,31 @@ public class CountryDataBase {
 
     public static void deleteCountries(Countries COUNTRIES){
         try {
+<<<<<<< HEAD
             String sql = "SET FOREIGN_KEY_CHECKS=0;";
             statement.execute(sql);
 
+=======
+            ArrayList<Countries> list = new ArrayList<>(table.values());
+            Countries COUNTRIES = list.get(0);
+            
+            String sql = "SET FOREIGN_KEY_CHECKS=0;";
+            statement.execute(sql);
+            
+>>>>>>> 443d47e2f85f90740b29483639f3dd81c1de79e3
             String deletesql = "DELETE FROM COUNTRIES WHERE COUNTRY_ID = "
                     +  COUNTRIES.getCOUNTRY_ID() + " ;";
+            
             System.out.println(deletesql);
+            
             statement.executeUpdate(deletesql);
 
             CustomServletContext.servletContext.setAttribute("COUNTRIES", selectCountries());
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 443d47e2f85f90740b29483639f3dd81c1de79e3
         } catch (SQLException e) {
             System.out.println("Problems with deleteCountries " + e);
         }
