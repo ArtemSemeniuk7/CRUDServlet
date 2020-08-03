@@ -13,6 +13,7 @@ import java.util.HashMap;
 
 @WebServlet("/jobsUpdate")
 public class JobsUpdateServlet extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -35,9 +36,7 @@ public class JobsUpdateServlet extends HttpServlet {
         JOBS.put(jobObject.getJOBS_ID(),jobObject);
         CustomServletContext.servletContext.setAttribute("JOBS", JOBS);
 
-        HashMap<Integer, Jobs> updateArgument = new HashMap<>();
-        updateArgument.put(jobObject.getJOBS_ID(), jobObject);
-        JobsDataBase.updateJobs(updateArgument);
+        JobsDataBase.updateJobs(jobObject);
 
         req.getRequestDispatcher("/jobs").forward(req, resp);
     }
@@ -45,7 +44,6 @@ public class JobsUpdateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        final String id = req.getParameter("id");
 
         req.getRequestDispatcher("/WEB-INF/view/jobsView/jobsUpdate.jsp")
                 .forward(req, resp);

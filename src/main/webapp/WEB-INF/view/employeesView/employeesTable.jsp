@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>JobsDataBase</title>
+    <title>EmployeesDataBase</title>
 </head>
 <body>
 <div style="display: flex;">
@@ -35,18 +35,21 @@
     <a href="<c:url value='/servletLogout' />">Log Out</a>
 </div>
 
-<form method="post" action="/jobs">
-    <label><input type="number" name="JOBS_ID"></label>   JOBS ID<br>
-
-    <label><input type="text" name="JOBS_TITLE"></label>   JOBS TITLE<br>
-    <label><input type="number" name="MIN_SALARY"></label>   MIN SALARY<br>
-    <label><input type="number" name="MAX_SALARY"></label>   MAX SALARY<br>
+<form method="post" action="/employees">
+    <label><input type="number" name="EMPLOYEE_ID"></label>   EMPLOYEE ID<br>
+    <label><input type="text" name="FIRST_NAME"></label>   FIRST NAME<br>
+    <label><input type="text" name="LAST_NAME"></label>   LAST NAME<br>
+    <label><input type="text" name="EMAIL"></label>    EMAIL<br>
+    <label><input type="text" name="HIRE_DATE"></label>   HIRE_DATE<br>
+    <label><input type="number" name="PHONE"></label>   PHONE<br>
+    <label><input type="number" name="SALARY"></label>   SALARY<br>
+    <label><input type="number" name="DEPARTMENT_ID"></label>   DEPARTMENT_ID<br>
     <div style="float:left;">
         <input type="submit" value="Insert Data" name="Insert">
     </div>
 </form>
 <br>
-<center><h2>JOBS TABLE</h2></center>
+<center><h2>EMPLOYEES TABLE</h2></center>
 <style>
     table {
         font-family: arial, sans-serif;
@@ -78,27 +81,35 @@
 
 
 <table style="width:100%">
+    <tr>
+        <th>EMPLOYEE ID</th>
+        <th>FIRST NAME</th>
+        <th>LAST NAME</th>
+        <th>EMAIL</th>
+        <th>HIRE_DATE</th>
+        <th>PHONE</th>
+        <th>SALARY</th>
+        <th>DEPARTMENT_ID</th>
+    </tr>
+    <c:forEach var="EMPLOYEE" items="${requestScope.EMPLOYEES}">
         <tr>
-            <th>JOBS ID</th>
-            <th>JOBS TITLE</th>
-            <th>MIN SALARY</th>
-            <th>MAX SALARY</th>
-        </tr>
-        <c:forEach var="JOB" items="${requestScope.JOBS}">
-        <tr>
-            <td><c:out value="${JOB.JOBS_ID}"/></td>
-            <td><c:out value="${JOB.JOBS_TITLE}"/></td>
-            <td><c:out value="${JOB.MIN_SALARY}"/></td>
-            <td><c:out value="${JOB.MAX_SALARY}"/></td>
-            <td><form method="get" action="<c:url value='/jobsUpdate'/>">
+            <td><c:out value="${EMPLOYEE.EMPLOYEE_ID}"/></td>
+            <td><c:out value="${EMPLOYEE.FIRST_NAME}"/></td>
+            <td><c:out value="${EMPLOYEE.LAST_NAME}"/></td>
+            <td><c:out value="${EMPLOYEE.EMAIL}"/></td>
+            <td><c:out value="${EMPLOYEE.HIRE_DATE}"/></td>
+            <td><c:out value="${EMPLOYEE.PHONE}"/></td>
+            <td><c:out value="${EMPLOYEE.SALARY}"/></td>
+            <td><c:out value="${EMPLOYEE.DEPARTMENT_ID}"/></td>
+            <td><form method="get" action="<c:url value='/employeesUpdate'/>">
                 <input type="submit" name="edit" value="EDIT"/>
             </form></td>
-            <td> <form method="post" action="<c:url value='/jobsDelete'/>">
-                <input type="number" hidden name="JOBS_ID" value="${JOB.JOBS_ID}" />
+            <td> <form method="post" action="<c:url value='/employeesDelete'/>">
+                <input type="number" hidden name="EMPLOYEE_ID" value="${EMPLOYEE.EMPLOYEE_ID}" />
                 <input type="submit" name="delete" value="DELETE"/>
             </form></td>
         </tr>
-        </c:forEach>
+    </c:forEach>
 </table>
 </body>
 </html>

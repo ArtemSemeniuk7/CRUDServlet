@@ -2,8 +2,6 @@ package servlets.departmentsServlet;
 
 import model.tables.Departments;
 import model.tablesConnection.DepartmentsDataBase;
-import model.tablesConnection.JobsDataBase;
-import model.tables.Jobs;
 import servlets.CustomServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +13,7 @@ import java.util.HashMap;
 
 @WebServlet("/departmentsUpdate")
 public class DepartmentUpdateServlet extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -35,14 +34,12 @@ public class DepartmentUpdateServlet extends HttpServlet {
         try {
             DEPARTMENTS = (HashMap<Integer, Departments>) getServletContext().getAttribute("DEPARTMENTS");
         } catch (ClassCastException e){
-            System.out.println("Problem with classcast on DepartmentUpdate pist " + e);
+            System.out.println("Problem with classcast on DepartmentUpdate post " + e);
         }
         DEPARTMENTS.put(departmentsObject.getDEPARTMENT_ID(),departmentsObject);
         CustomServletContext.servletContext.setAttribute("DEPARTMENTS", DEPARTMENTS);
 
-        HashMap<Integer, Departments> updateArgument = new HashMap<>();
-        updateArgument.put(departmentsObject.getDEPARTMENT_ID(), departmentsObject);
-        DepartmentsDataBase.updateDepartments(updateArgument);
+        DepartmentsDataBase.updateDepartments(departmentsObject);
 
         req.getRequestDispatcher("/departments").forward(req, resp);
     }
@@ -50,7 +47,6 @@ public class DepartmentUpdateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        final String id = req.getParameter("id");
 
         req.getRequestDispatcher("/WEB-INF/view/departmentsView/departmentsUpdate.jsp")
                 .forward(req, resp);

@@ -13,7 +13,9 @@ import java.io.IOException;
 @WebFilter(urlPatterns = { "/jobs","/jobsUpdate", "/jobsDelete",
                            "/countries", "/countriesUpdate", "/countriesDelete",
                            "/departments", "/departmentsUpdate", "/departmentsDelete",
-                           "/region", "/regionUpdate", "/regionDelete"})
+                           "/region", "/regionUpdate", "/regionDelete",
+                           "/employees", "/employeesUpdate", "/employeesDelete"})
+
 public class LoginFilter implements Filter {
 
     @Override

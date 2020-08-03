@@ -6,7 +6,6 @@ import servlets.CustomServletContext;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -39,8 +38,10 @@ public class JobsDataBase {
         try {
             HashSet<Jobs> jobsValue = new HashSet<>(table.values());
             HashMap<Integer, Jobs> insertmap = selectJobs();
+
             HashSet<Jobs> insertjobs = new HashSet<>(insertmap.values());
             jobsValue.removeAll(insertjobs);
+
             Iterator<Jobs> itr = jobsValue.iterator();
             while (itr.hasNext()) {
                 Jobs JOBS = itr.next();
@@ -56,10 +57,8 @@ public class JobsDataBase {
         }
     }
 
-    public static void updateJobs(HashMap<Integer, Jobs> table){
+    public static void updateJobs(Jobs JOBS){
         try {
-            ArrayList<Jobs> list = new ArrayList<>(table.values());
-            Jobs JOBS = list.get(0);
             String updatesql = "UPDATE JOBS SET" +
                     " JOBS_ID = " + JOBS.getJOBS_ID() + ", JOBS_TITLE = '" + JOBS.getJOBS_TITLE() +
                     "', MIN_SALARY = " + JOBS.getMIN_SALARY() + ", MAX_SALARY = " +  JOBS.getMAX_SALARY() +
@@ -72,10 +71,8 @@ public class JobsDataBase {
         }
     }
 
-    public static void deleteJobs(HashMap<Integer, Jobs> table){
+    public static void deleteJobs(Jobs JOBS){
         try {
-            ArrayList<Jobs> list = new ArrayList<>(table.values());
-            Jobs JOBS = list.get(0);
             String deletesql = "DELETE FROM JOBS WHERE JOBS_ID = "
                     +  JOBS.getJOBS_ID() + " ;";
             System.out.println(deletesql);

@@ -1,10 +1,7 @@
 package servlets.departmentsServlet;
 
-import model.tables.Countries;
 import model.tables.Departments;
-import model.tablesConnection.CountryDataBase;
 import model.tablesConnection.DepartmentsDataBase;
-import model.tablesConnection.JobsDataBase;
 import servlets.CustomServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,8 +13,10 @@ import java.util.HashMap;
 
 @WebServlet("/departments")
 public class DepartmentsGetAddServlet extends HttpServlet {
+
     HashMap<Integer, Departments> DEPARTMENTS;
     public final String departmentsTable = "/WEB-INF/view/departmentsView/departmentsTable.jsp";
+
     @Override
     public void init() {
         try {
@@ -62,6 +61,7 @@ public class DepartmentsGetAddServlet extends HttpServlet {
         }
         DEPARTMENTS.put(departmentsObject.getDEPARTMENT_ID(),departmentsObject);
         CustomServletContext.servletContext.setAttribute("DEPARTMENTS", DEPARTMENTS);
+
         DepartmentsDataBase.insertDepartments(DEPARTMENTS);
 
         doGet(req, resp);

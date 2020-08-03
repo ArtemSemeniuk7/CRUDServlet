@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>JobsDataBase</title>
+    <title>DepartmentsDataBase</title>
 </head>
 <body>
 <div style="display: flex;">
@@ -25,19 +25,14 @@
         <input type="submit" name="DEPARTMENTS " value="DEPARTMENTS"/>
     </form>
 
-    <form method="get" action="<c:url value='/jobsDelete'/>">
+    <form method="get" action="<c:url value='/employees'/>">
         <input type="submit" name="EMPLOYEES " value="EMPLOYEES"/>
     </form>
 
-    <form method="get" action="<c:url value='/jobsDelete'/>">
-        <input type="submit" name="JOB_HISTORY " value="JOB_HISTORY"/>
-    </form>
-    <form method="get" action="<c:url value='/jobsDelete'/>">
-        <input type="submit" name="LOCATIONS " value="LOCATIONS"/>
-    </form>
     <form method="get" action="<c:url value='/region'/>">
         <input type="submit" name="REGION " value="REGION"/>
     </form>
+
     <a href="<c:url value='/servletLogout' />">Log Out</a>
 </div>
 

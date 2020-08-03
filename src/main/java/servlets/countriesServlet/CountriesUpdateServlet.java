@@ -31,12 +31,11 @@ public class CountriesUpdateServlet extends HttpServlet {
         } catch (ClassCastException e){
             System.out.println("Problem with classcast on CountriesGetAdd post " + e);
         }
+
         COUNTRIES.put(countriesObject.getCOUNTRY_ID(),countriesObject);
         CustomServletContext.servletContext.setAttribute("COUNTRIES", COUNTRIES);
 
-        HashMap<Integer, Countries> updateArgument = new HashMap<>();
-        updateArgument.put(countriesObject.getCOUNTRY_ID(), countriesObject);
-        CountryDataBase.updateCountries(updateArgument);
+        CountryDataBase.updateCountries(countriesObject);
 
         req.getRequestDispatcher("/countries").forward(req, resp);
     }
@@ -44,7 +43,6 @@ public class CountriesUpdateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        final String id = req.getParameter("id");
 
         req.getRequestDispatcher("/WEB-INF/view/countriesView/countriesUpdate.jsp")
                 .forward(req, resp);

@@ -1,9 +1,7 @@
 package servlets.countriesServlet;
 
-
 import model.tables.Countries;
 import model.tablesConnection.CountryDataBase;
-import model.tablesConnection.JobsDataBase;
 import servlets.CustomServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,6 +55,7 @@ public class CountriesGetAddServlet extends HttpServlet {
         }
         COUNTRIES.put(countriesObject.getCOUNTRY_ID(),countriesObject);
         CustomServletContext.servletContext.setAttribute("COUNTRIES", COUNTRIES);
+
         CountryDataBase.insertCountries(COUNTRIES);
 
         doGet(req, resp);

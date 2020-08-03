@@ -1,10 +1,8 @@
-package servlets.RegionServlet;
-import model.tables.Jobs;
+package servlets.regionServlet;
+
 import model.tables.Region;
-import model.tablesConnection.JobsDataBase;
 import model.tablesConnection.RegionDataBase;
 import servlets.CustomServletContext;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,11 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 @WebServlet("/region")
 public class RegionGetAddServlet extends HttpServlet {
+
     HashMap<Integer, Region> REGION;
     public final String regionTable = "/WEB-INF/view/regionView/regionTable.jsp";
     String user;
@@ -66,7 +64,9 @@ public class RegionGetAddServlet extends HttpServlet {
             }
             REGION.put(regionObject.getRegionId(), regionObject);
             CustomServletContext.servletContext.setAttribute("REGION", REGION);
+
             RegionDataBase.insertRegion(REGION);
+
         } catch (Exception e){
             System.out.println(e);
         }

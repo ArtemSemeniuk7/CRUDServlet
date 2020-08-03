@@ -1,13 +1,11 @@
 package model.tablesConnection;
 
 import model.DataBaseConnector;
-import model.tables.Jobs;
 import model.tables.Region;
 import servlets.CustomServletContext;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -39,14 +37,17 @@ public class RegionDataBase {
         try {
             HashSet<Region> regionValue = new HashSet<>(table.values());
             HashMap<Integer, Region> insertmap = selectRegion();
+
             HashSet<Region> insertjobs = new HashSet<>(insertmap.values());
             regionValue.removeAll(insertjobs);
+
             Iterator<Region> itr = regionValue.iterator();
             while (itr.hasNext()) {
                 Region REGION = itr.next();
                 System.out.println(REGION.getRegionId());
                 String sql = "SET FOREIGN_KEY_CHECKS=0;";
                 statement.execute(sql);
+
                 String insertsql = "INSERT INTO " + "REGION" +
                         " (REGION_ID, REGION_NAME) " +
                         " VALUES" + " ( " + REGION.getRegionId() + ", " + "'" +
@@ -58,12 +59,11 @@ public class RegionDataBase {
         }
     }
 
-    public static void updateRegion(HashMap<Integer, Region> table){
+    public static void updateRegion(Region REGION){
         try {
-            ArrayList<Region> list = new ArrayList<>(table.values());
-            Region REGION = list.get(0);
             String sql = "SET FOREIGN_KEY_CHECKS=0;";
             statement.execute(sql);
+
             String updatesql = "UPDATE REGION SET" +
                     " REGION_ID = " + REGION.getRegionId() +
                     ", REGION_NAME = '"  + REGION.getRegionName() +
@@ -76,17 +76,18 @@ public class RegionDataBase {
         }
     }
 
-    public static void deleteRegion(HashMap<Integer, Region> table){
+    public static void deleteRegion(Region REGION){
         try {
-            ArrayList<Region> list = new ArrayList<>(table.values());
-            Region REGION = list.get(0);
             String sql = "SET FOREIGN_KEY_CHECKS=0;";
             statement.execute(sql);
+
             String deletesql = "DELETE FROM REGION WHERE REGION_ID = "
                     +  REGION.getRegionId() + " ;";
             System.out.println(deletesql);
             statement.executeUpdate(deletesql);
+
             CustomServletContext.servletContext.setAttribute("REGION", selectRegion());
+
         } catch (SQLException e) {
             System.out.println("Problems with deleteRegion " + e);
         }

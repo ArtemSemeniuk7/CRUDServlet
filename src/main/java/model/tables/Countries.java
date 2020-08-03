@@ -2,7 +2,7 @@ package model.tables;
 
 import java.util.Objects;
 
-public class Countries implements Table {
+public class Countries {
     private int COUNTRY_ID;
     private String COUNTRY_NAME;
     private int REGION_ID;

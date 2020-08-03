@@ -1,11 +1,8 @@
-package servlets.RegionServlet;
+package servlets.regionServlet;
 
-import model.tables.Jobs;
 import model.tables.Region;
-import model.tablesConnection.JobsDataBase;
 import model.tablesConnection.RegionDataBase;
 import servlets.CustomServletContext;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +13,7 @@ import java.util.HashMap;
 
 @WebServlet("/regionDelete")
 public class RegionDeleteServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -39,9 +37,7 @@ public class RegionDeleteServlet extends HttpServlet {
         REGION.put(regionObject.getRegionId(),regionObject);
         CustomServletContext.servletContext.setAttribute("REGION", REGION);
 
-        HashMap<Integer, Region>  deleteRegion = new HashMap<>();
-        deleteRegion.put(regionObject.getRegionId(), regionObject);
-        RegionDataBase.deleteRegion(deleteRegion);
+        RegionDataBase.deleteRegion(regionObject);
 
         resp.sendRedirect("/region");
     }

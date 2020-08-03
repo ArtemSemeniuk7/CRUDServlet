@@ -1,7 +1,7 @@
-package servlets.jobsServlet;
+package servlets.employeesServlet;
 
-import model.tablesConnection.JobsDataBase;
-import model.tables.Jobs;
+import model.tables.Employees;
+import model.tablesConnection.EmployeeDataBase;
 import servlets.CustomServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 
-@WebServlet("/jobsDelete")
-public class JobsDeleteServlet extends HttpServlet {
+
+@WebServlet("/employeesDelete")
+public class EmployeesDeleteServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -27,20 +28,21 @@ public class JobsDeleteServlet extends HttpServlet {
 
         req.setCharacterEncoding("UTF-8");
 
-        final int ID = Integer.parseInt(req.getParameter("JOBS_ID"));
-        final Jobs jobObject = new Jobs(ID);
+        final int ID = Integer.parseInt(req.getParameter("EMPLOYEES_ID"));
+        final Employees employeesObject = new Employees(ID);
 
-        HashMap<Integer, Jobs> JOBS = null;
+        HashMap<Integer, Employees> EMPLOYEES = null;
         try {
-            JOBS = (HashMap<Integer, Jobs>) getServletContext().getAttribute("JOBS");
+            EMPLOYEES =
+                    (HashMap<Integer, Employees>) getServletContext().getAttribute("EMPLOYEES");
         } catch (ClassCastException e){
             System.out.println("Problems with classcast on JobsDelete post " + e);
         }
-        JOBS.put(jobObject.getJOBS_ID(),jobObject);
-        CustomServletContext.servletContext.setAttribute("JOBS", JOBS);
+        EMPLOYEES.put(employeesObject.getEMPLOYEE_ID(), employeesObject);
+        CustomServletContext.servletContext.setAttribute("EMPLOYEES", EMPLOYEES);
 
-        JobsDataBase.deleteJobs(jobObject);
+        EmployeeDataBase.deleteEmployees(employeesObject);
 
-        resp.sendRedirect("/jobs");
+        resp.sendRedirect("/employees");
     }
 }

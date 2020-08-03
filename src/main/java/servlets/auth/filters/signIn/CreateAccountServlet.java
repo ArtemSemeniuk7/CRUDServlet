@@ -18,7 +18,6 @@ public class CreateAccountServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("che za nah");
         req.getRequestDispatcher(createAccountTable).forward(req, resp);
     }
 
@@ -27,6 +26,7 @@ public class CreateAccountServlet extends HttpServlet {
         HttpSession httpSession = req.getSession();
         String login = req.getParameter("login");
         String password = req.getParameter("password");
+
         if (UserDAO.signIn(login, password)) {
             httpSession.setAttribute(login, password);
             LoginServlet.log = true;

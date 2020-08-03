@@ -25,16 +25,10 @@
         <input type="submit" name="DEPARTMENTS " value="DEPARTMENTS"/>
     </form>
 
-    <form method="get" action="<c:url value='/jobsDelete'/>">
+    <form method="get" action="<c:url value='/employees'/>">
         <input type="submit" name="EMPLOYEES " value="EMPLOYEES"/>
     </form>
 
-    <form method="get" action="<c:url value='/jobsDelete'/>">
-        <input type="submit" name="JOB_HISTORY " value="JOB_HISTORY"/>
-    </form>
-    <form method="get" action="<c:url value='/jobsDelete'/>">
-        <input type="submit" name="LOCATIONS " value="LOCATIONS"/>
-    </form>
     <form method="get" action="<c:url value='/region'/>">
         <input type="submit" name="REGION " value="REGION"/>
     </form>

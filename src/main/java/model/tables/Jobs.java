@@ -2,7 +2,7 @@ package model.tables;
 
 import java.util.Objects;
 
-public class Jobs implements Table {
+public class Jobs {
     private int JOBS_ID;
     private String JOBS_TITLE;
     private int MIN_SALARY;

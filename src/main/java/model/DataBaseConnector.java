@@ -9,7 +9,7 @@ public class DataBaseConnector {
     private static Connection connection = null;
     private static Statement statement = null;
 
-        public static Connection getConnection() {
+    public static Connection getConnection() {
         return connection;
     }
 

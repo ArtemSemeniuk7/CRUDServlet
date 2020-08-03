@@ -1,10 +1,7 @@
 package servlets.departmentsServlet;
 
-
 import model.tables.Departments;
 import model.tablesConnection.DepartmentsDataBase;
-import model.tablesConnection.JobsDataBase;
-import model.tables.Jobs;
 import servlets.CustomServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,9 +39,7 @@ public class DepartmentsDeleteServlet extends HttpServlet {
         DEPARTMENTS.put(departmentsObject.getDEPARTMENT_ID(),departmentsObject);
         CustomServletContext.servletContext.setAttribute("DEPARTMENTS", DEPARTMENTS);
 
-        HashMap<Integer, Departments>  deleteDepartments = new HashMap<>();
-        deleteDepartments.put(departmentsObject.getDEPARTMENT_ID(), departmentsObject);
-        DepartmentsDataBase.deleteDepartments(deleteDepartments);
+        DepartmentsDataBase.deleteDepartments(departmentsObject);
 
         resp.sendRedirect("/departments");
     }

@@ -10,14 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 @WebServlet("/jobs")
 public class JobsGetAddServlet extends HttpServlet {
+
     HashMap<Integer, Jobs> JOBS;
     public final String jobsTable = "/WEB-INF/view/jobsView/jobsTable.jsp";
     String user;
+
     @Override
     public void init() {
         try {
@@ -27,6 +28,7 @@ public class JobsGetAddServlet extends HttpServlet {
             System.out.println("Problem with classcast on JobsGetAdd init " + e);
         }
     }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -43,6 +45,7 @@ public class JobsGetAddServlet extends HttpServlet {
 
         req.getRequestDispatcher(jobsTable).forward(req, resp);
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -63,7 +66,9 @@ public class JobsGetAddServlet extends HttpServlet {
             }
             JOBS.put(jobObject.getJOBS_ID(), jobObject);
             CustomServletContext.servletContext.setAttribute("JOBS", JOBS);
+
             JobsDataBase.insertJobs(JOBS);
+
         } catch (Exception e){
             System.out.println(e);
         }

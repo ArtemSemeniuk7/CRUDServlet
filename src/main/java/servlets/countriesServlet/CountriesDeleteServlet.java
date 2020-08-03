@@ -39,9 +39,7 @@ public class CountriesDeleteServlet extends HttpServlet {
         COUNTRIES.put(countriesObject.getCOUNTRY_ID(),countriesObject);
         CustomServletContext.servletContext.setAttribute("COUNTRIES", COUNTRIES);
 
-        HashMap<Integer, Countries>  deleteCountries = new HashMap<>();
-        deleteCountries.put(countriesObject.getCOUNTRY_ID(), countriesObject);
-        CountryDataBase.deleteCountries(deleteCountries);
+        CountryDataBase.deleteCountries(countriesObject);
 
         resp.sendRedirect("/countries");
     }
