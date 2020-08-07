@@ -40,7 +40,6 @@ public class DepartmentsDataBase {
         try {
             HashSet<Departments> departmentsValue = new HashSet<>(table.values());
             HashMap<Integer, Departments> insertmap = selectDepartments();
-<<<<<<< HEAD
 
             HashSet<Departments> insertjobs = new HashSet<>(insertmap.values());
             departmentsValue.removeAll(insertjobs);
@@ -51,8 +50,6 @@ public class DepartmentsDataBase {
 
                 String sql = "SET FOREIGN_KEY_CHECKS=0;";
                 statement.execute(sql);
-
-=======
             
             HashSet<Departments> insertjobs = new HashSet<>(insertmap.values());
             departmentsValue.removeAll(insertjobs);
@@ -64,7 +61,6 @@ public class DepartmentsDataBase {
                 String sql = "SET FOREIGN_KEY_CHECKS=0;";
                 statement.execute(sql);
                 
->>>>>>> 443d47e2f85f90740b29483639f3dd81c1de79e3
                 String insertsql = "INSERT INTO " + "DEPARTMENTS" +
                         " (DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID, LOCATION_ID) " +
                         " VALUES" + " ( " + DEPARTMENTS.getDEPARTMENT_ID() + ", " +
@@ -81,18 +77,15 @@ public class DepartmentsDataBase {
 
     public static void updateDepartments(Departments DEPARTMENTS){
         try {
-<<<<<<< HEAD
             String sql = "SET FOREIGN_KEY_CHECKS=0;";
             statement.execute(sql);
 
-=======
             ArrayList<Departments> list = new ArrayList<>(table.values());
             Departments DEPARTMENTS = list.get(0);
             
             String sql = "SET FOREIGN_KEY_CHECKS=0;";
             statement.execute(sql);
             
->>>>>>> 443d47e2f85f90740b29483639f3dd81c1de79e3
             String updatesql = "UPDATE DEPARTMENTS SET" +
                     " DEPARTMENT_ID = " + DEPARTMENTS.getDEPARTMENT_ID() +
                     ", DEPARTMENT_NAME = '" + DEPARTMENTS.getDEPARTMENT_NAME() +
@@ -110,31 +103,25 @@ public class DepartmentsDataBase {
 
     public static void deleteDepartments(Departments DEPARTMENTS){
         try {
-<<<<<<< HEAD
             String sql = "SET FOREIGN_KEY_CHECKS=0;";
             statement.execute(sql);
-
-=======
+            
             ArrayList<Departments> list = new ArrayList<>(table.values());
             Departments DEPARTMENTS = list.get(0);
             
             String sql = "SET FOREIGN_KEY_CHECKS=0;";
             statement.execute(sql);
             
->>>>>>> 443d47e2f85f90740b29483639f3dd81c1de79e3
             String deletesql = "DELETE FROM DEPARTMENTS WHERE DEPARTMENT_ID = "
                     +  DEPARTMENTS.getDEPARTMENT_ID() + " ;";
             System.out.println(deletesql);
             statement.executeUpdate(deletesql);
-<<<<<<< HEAD
 
             CustomServletContext.servletContext.setAttribute("DEPARTMENTS", selectDepartments());
 
-=======
             
             CustomServletContext.servletContext.setAttribute("DEPARTMENTS", selectDepartments());
             
->>>>>>> 443d47e2f85f90740b29483639f3dd81c1de79e3
         } catch (SQLException e) {
             System.out.println("Problems with deleteDepartments " + e);
         }
