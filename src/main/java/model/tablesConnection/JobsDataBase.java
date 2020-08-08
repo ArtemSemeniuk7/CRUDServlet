@@ -38,17 +38,13 @@ public class JobsDataBase {
         try {
             HashSet<Jobs> jobsValue = new HashSet<>(table.values());
             HashMap<Integer, Jobs> insertmap = selectJobs();
-<<<<<<< HEAD
 
             HashSet<Jobs> insertjobs = new HashSet<>(insertmap.values());
             jobsValue.removeAll(insertjobs);
-
-=======
             
             HashSet<Jobs> insertjobs = new HashSet<>(insertmap.values());
             jobsValue.removeAll(insertjobs);
             
->>>>>>> 443d47e2f85f90740b29483639f3dd81c1de79e3
             Iterator<Jobs> itr = jobsValue.iterator();
             
             while (itr.hasNext()) {
@@ -68,12 +64,10 @@ public class JobsDataBase {
 
     public static void updateJobs(Jobs JOBS){
         try {
-<<<<<<< HEAD
-=======
+            
             ArrayList<Jobs> list = new ArrayList<>(table.values());
             Jobs JOBS = list.get(0);
             
->>>>>>> 443d47e2f85f90740b29483639f3dd81c1de79e3
             String updatesql = "UPDATE JOBS SET" +
                     " JOBS_ID = " + JOBS.getJOBS_ID() + ", JOBS_TITLE = '" + JOBS.getJOBS_TITLE() +
                     "', MIN_SALARY = " + JOBS.getMIN_SALARY() + ", MAX_SALARY = " +  JOBS.getMAX_SALARY() +
@@ -89,12 +83,10 @@ public class JobsDataBase {
 
     public static void deleteJobs(Jobs JOBS){
         try {
-<<<<<<< HEAD
-=======
+            
             ArrayList<Jobs> list = new ArrayList<>(table.values());
             Jobs JOBS = list.get(0);
             
->>>>>>> 443d47e2f85f90740b29483639f3dd81c1de79e3
             String deletesql = "DELETE FROM JOBS WHERE JOBS_ID = "
                     +  JOBS.getJOBS_ID() + " ;";
             System.out.println(deletesql);
