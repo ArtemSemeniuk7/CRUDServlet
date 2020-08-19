@@ -23,7 +23,6 @@ public class JobsGetAddServlet extends HttpServlet {
     public void init() {
         try {
             JOBS = (HashMap<Integer, Jobs>) getServletContext().getAttribute("JOBS");
-            // Unsafe, I know
         } catch (ClassCastException e){
             System.out.println("Problem with classcast on JobsGetAdd init " + e);
         }
